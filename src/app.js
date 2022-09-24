@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const routes = require('./routes');
+const mongoose = require('mongoose');
 
 //mount graphqlHTTP to handle graphql requests and responses
 const { graphqlHTTP } = require('express-graphql');
@@ -26,8 +27,20 @@ app.use('/graphql', graphqlHTTP({
   graphiql: true,
 }));
 
-app.listen(port, () => {
-  createTunnel(port);
+//connect to mongodb
+const mongoUser = "moazmoshtha";
+const mongoPassword = "sGEWKyUS0Evra5kK";
+const mongoUrl = `mongodb+srv://${mongoUser}:${mongoPassword}@cluster0.xdilpjh.mongodb.net/?retryWrites=true&w=majority`;
+mongoose.connect(
+  mongoUrl,
+  { useNewUrlParser: true, useUnifiedTopology: true }
+  ).then(() => {
+  console.log("Connected to MongoDB");
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+    createTunnel(port);
+  });
+}).catch(err => {
+  console.log(err);
 });
-
 module.exports = app;
