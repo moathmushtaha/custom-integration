@@ -5,8 +5,8 @@ const routes = require('./routes');
 
 //mount graphqlHTTP to handle graphql requests and responses
 const { graphqlHTTP } = require('express-graphql');
-const schema = require('./graphql/schema');
-const root = require('./graphql/resolvers');
+const graphQlSchema  = require('./graphql/schema/index');
+const graphQlResolvers  = require('./graphql/resolvers/index');
 
 const { createTunnel } = require('./helpers/tunnel');
 
@@ -19,10 +19,10 @@ app.use(routes);
 // one endpoint for all graphql queries, mutations, and subscriptions
 app.use('/graphql', graphqlHTTP({
   //where we define our schema
-  schema: schema,
+  schema: graphQlSchema,
   //where we define our resolvers
-  rootValue: root,
-
+  rootValue: graphQlResolvers,
+  //enable graphiql for development
   graphiql: true,
 }));
 
