@@ -28,6 +28,20 @@ module.exports = {
       throw err;
     }
   },
+
+  //update item
+  updateItem: async args => {
+    try {
+      const item = await Item.findById(args._id);
+      item.name = args.itemInput.name;
+      item.description = args.itemInput.description;
+      item.status = args.itemInput.status;
+      const result = await item.save();
+      return transformItem(result);
+    } catch (err) {
+      throw err;
+    }
+  }
 };
 
 /**
