@@ -30,7 +30,8 @@ app.use('/graphql', graphqlHTTP({
 //connect to mongodb
 const mongoUser = "moazmoshtha";
 const mongoPassword = "sGEWKyUS0Evra5kK";
-const mongoUrl = `mongodb+srv://${mongoUser}:${mongoPassword}@cluster0.xdilpjh.mongodb.net/?retryWrites=true&w=majority`;
+const mongoDBName = "monday";
+const mongoUrl = `mongodb+srv://${mongoUser}:${mongoPassword}@cluster0.xdilpjh.mongodb.net/${mongoDBName}?retryWrites=true&w=majority`;
 mongoose.connect(
   mongoUrl,
   { useNewUrlParser: true, useUnifiedTopology: true }
