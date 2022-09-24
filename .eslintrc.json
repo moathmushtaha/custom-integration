@@ -12,5 +12,6 @@
     "flowtype": {
       "onlyFilesWithFlowAnnotation": false
     }
-  }
+  },
+  "parser": "@babel/eslint-parser"
 }
