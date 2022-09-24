@@ -2,7 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const routes = require('./routes');
-const graphqlHTTP = require('express-graphql');
+
+//mount graphqlHTTP to handle graphql requests and responses
+const { graphqlHTTP } = require('express-graphql');
 const schema = require('./graphql/schema');
 const root = require('./graphql/resolvers');
 
@@ -17,7 +19,7 @@ app.use(routes);
 // one endpoint for all graphql queries, mutations, and subscriptions
 app.use('/graphql', graphqlHTTP({
   //where we define our schema
-  schema,
+  schema: schema,
   //where we define our resolvers
   rootValue: root,
 
