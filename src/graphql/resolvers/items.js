@@ -4,7 +4,8 @@ module.exports = {
   //get all items
   items: async () => {
     try {
-      const items = await Item.find();
+      //reverse the order of the items so the newest item is first
+      const items = await Item.find().sort({ _id: -1 });
       return items.map(item => {
         return transformItem(item);
       });
