@@ -17,6 +17,16 @@ const app = express();
 app.use(bodyParser.json());
 app.use(routes);
 
+//allow cross-origin requests
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  next();
+});
 // one endpoint for all graphql queries, mutations, and subscriptions
 app.use('/graphql', graphqlHTTP({
   //where we define our schema
@@ -28,10 +38,7 @@ app.use('/graphql', graphqlHTTP({
 }));
 
 //connect to mongodb
-const mongoUser = "moazmoshtha";
-const mongoPassword = "sGEWKyUS0Evra5kK";
-const mongoDBName = "monday";
-const mongoUrl = `mongodb+srv://${mongoUser}:${mongoPassword}@cluster0.xdilpjh.mongodb.net/${mongoDBName}?retryWrites=true&w=majority`;
+const mongoUrl = process.env.MONGODB_URI;
 mongoose.connect(
   mongoUrl,
   { useNewUrlParser: true, useUnifiedTopology: true }
