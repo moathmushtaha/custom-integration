@@ -1,8 +1,7 @@
 const Item = require('../../models/item');
 
-module.exports = {
   //get all items
-  items: async () => {
+  const items = async () => {
     try {
       //reverse the order of the items so the newest item is first
       const items = await Item.find().sort({ _id: -1 });
@@ -12,10 +11,10 @@ module.exports = {
     } catch (err) {
       throw err;
     }
-  },
+  }
 
   //create item
-  createItem: async args => {
+  const createItem = async (args) => {
     const item = new Item({
       name: args.itemInput.name,
       description: args.itemInput.description,
@@ -28,10 +27,10 @@ module.exports = {
     } catch (err) {
       throw err;
     }
-  },
+  }
 
   //update item
-  updateItem: async args => {
+  const updateItem = async (args) => {
     try {
       const item = await Item.findById(args._id);
       item.name = args.itemInput.name;
@@ -43,7 +42,7 @@ module.exports = {
       throw err;
     }
   }
-};
+
 
 /**
  * @description
@@ -55,4 +54,10 @@ const transformItem = item => {
     ...item._doc,
     _id: item.id,
   };
+}
+
+module.exports = {
+  items,
+  createItem,
+  updateItem
 }
