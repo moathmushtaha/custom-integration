@@ -15,6 +15,7 @@ module.exports = buildSchema(`
     }
 
     input ItemInput {
+        _id: Int!
         name: String!
         description: String!
         status: String!
