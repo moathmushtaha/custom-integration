@@ -2,10 +2,11 @@
 
 Custom Monday.com integration use for listen on item column changes then update it or store -if not exists- in MongoDB, getting data from Monday.com using custom item mapping.
 
-For more details click [Here](https://github.com/moazmoshtha/custom-integration).
+For more details click [Here](https://github.com/moazmoshtha/custom-monday-app).
 
 ## Run and Test
-#### After clone this repository 
+### You can watch this [video](https://youtu.be/9lyXEVgHK3E) or follw setps below.
+#### After clone this repository, make sure you have [Nodjs](https://nodejs.org/en/download/)
 
 1-  Visit [MongoDB Atlas Database](https://www.mongodb.com/cloud/atlas/register) and create account.
 
@@ -32,8 +33,10 @@ npm run start
 ngrok http 8302
 ``
 
-8- Add an [integration](https://developer.monday.com/apps/docs/quickstart-integration) to your Monday app.
-![Add an integration to your monday app](https://dapulse-res.cloudinary.com/image/upload/v1615323590/remote_mondaycom_static/uploads/DiproBhowmik/integration_template.gif)
+8- Go to app features and Add [integration](https://developer.monday.com/apps/docs/quickstart-integration) to your Monday app.
 
 9- Copy ngrok url from result of step 7, and paste it in URL input when add integration.
 
+10- create recipes (custom action - custom field types), watch this [video](https://youtu.be/9lyXEVgHK3E?t=288)
+
+11- Add recipe to your monday board and test it, watch this [video](https://youtu.be/9lyXEVgHK3E?t=420)
